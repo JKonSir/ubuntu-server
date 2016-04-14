@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# upgrade aptitude repository
+sudo apt-get upgrade
+
 # install midnight commander
 sudo apt-get --force-yes -y install mc
 
@@ -8,7 +11,7 @@ wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-
 
 tar -xf jdk-8u77-linux-x64.tar.gz
 
-sudo mkdir -p /usr/lib/java/jdk
+# sudo mkdir -p /usr/lib/java/jdk
 
 sudo mv jdk1.8.0_77 /usr/lib/java/jdk
 
@@ -20,6 +23,8 @@ echo 'PATH=:$PATH:$JAVA_HOME/bin' >> .bashrc
 # install postgresql
 sudo apt-get --force-yes -y install postgresql
 
+sudo service postgresql start
+
 # insta wildfly
 wget http://download.jboss.org/wildfly/10.0.0.Final/wildfly-10.0.0.Final.tar.gz
 
@@ -27,7 +32,7 @@ tar -xf wildfly-10.0.0.Final.tar.gz
 
 rm wildfly-10.0.0.Final.tar.gz
 
-sudo mkdir /server
+# sudo mkdir /server
 
 sudo mv wildfly-10.0.0.Final /server
 
