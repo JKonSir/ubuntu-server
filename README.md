@@ -18,3 +18,6 @@
 11. create data base
   sudo su - postgres
   psql -h 127.0.0.1 -p 5432 -U postgres -f "/home/vagrant/deploy/init.sql"
+
+database: testdb, user: test_user, password: qwerty.
+wildfly: console: localhost:4804, http: 4800
