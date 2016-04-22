@@ -19,5 +19,5 @@
   sudo su - postgres
   psql -h 127.0.0.1 -p 5432 -U postgres -f "/home/vagrant/deploy/init.sql"
 
-postgres - database: testdb, user: test_user, password: qwerty;
-Wildfly - console: localhost:4804, http: 4800
+postgres - database: testdb, user: test_user, password: qwerty, port: 15432, host: localhost;
+Wildfly - console: localhost:4804, http: localhost:4800.
