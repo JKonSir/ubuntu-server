@@ -19,4 +19,4 @@
   psql -h 127.0.0.1 -p 5432 -U postgres -f "/home/vagrant/deploy/init.sql"
 
 postgres - database: testdb, user: test_user, password: qwerty, port: 15432, host: localhost;
-Wildfly - console: localhost:4804, http: localhost:4800.
+Wildfly - console: localhost:4804, http: localhost:4800, deploy folder: /server/test
