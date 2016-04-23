@@ -31,6 +31,9 @@
         <extension module="org.wildfly.extension.undertow"/>
     </extensions>
 
+    <paths>
+        <path name="deploy.dir" path="/server"/>
+    </paths>
 
     <management>
         <security-realms>
@@ -135,7 +138,15 @@
         <subsystem xmlns="urn:jboss:domain:bean-validation:1.0"/>
         <subsystem xmlns="urn:jboss:domain:datasources:4.0">
             <datasources>
-                <datasource jta="false" jndi-name="java:/PostgresDS" pool-name="PostgresDS" enabled="true" use-ccm="false">
+                <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
+                    <driver>h2</driver>
+                    <security>
+                        <user-name>sa</user-name>
+                        <password>sa</password>
+                    </security>
+                </datasource>
+                <datasource jta="false" jndi-name="java:jboss/PostgresDS" pool-name="PostgresDS" enabled="true" use-ccm="false">
                     <connection-url>jdbc:postgresql://localhost:5432/testdb</connection-url>
                     <driver-class>org.postgresql.Driver</driver-class>
                     <driver>postgresql</driver>
@@ -150,6 +161,9 @@
                     </validation>
                 </datasource>
                 <drivers>
+                    <driver name="h2" module="com.h2database.h2">
+                        <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+                    </driver>
                     <driver name="postgresql" module="org.postgresql">
                         <xa-datasource-class>org.postgresql.ds.PGPoolingDataSource</xa-datasource-class>
                     </driver>
@@ -157,7 +171,7 @@
             </datasources>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:deployment-scanner:2.0">
-            <deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000" runtime-failure-causes-rollback="${jboss.deployment.scanner.rollback.on.failure:false}"/>
+            <deployment-scanner path="test" relative-to="deploy.dir" scan-interval="5000" auto-deploy-zipped="true" auto-deploy-exploded="false"/>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:ee:4.0">
             <spec-descriptor-property-replacement>false</spec-descriptor-property-replacement>
@@ -411,4 +425,5 @@
             <remote-destination host="localhost" port="25"/>
         </outbound-socket-binding>
     </socket-binding-group>
+
 </server>

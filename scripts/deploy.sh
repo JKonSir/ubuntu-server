@@ -44,8 +44,13 @@ sudo mv wildfly-10.0.0.Final /opt/wildfly-10.0.0.Final
 sudo chown -R vagrant:vagrant /opt/wildfly-10.0.0.Final
 
 rm /opt/wildfly-10.0.0.Final/standalone/configuration/standalone.xml
-
 mv deploy/standalone.xml /opt/wildfly-10.0.0.Final/standalone/configuration
+
+rm /opt/wildfly-10.0.0.Final/bin/jboss-cli.xml
+mv deploy/jboss-cli.xml /opt/wildfly-10.0.0.Final/bin
+
+rm /opt/wildfly-10.0.0.Final/bin/standalone.conf
+mv deploy/standalone.conf /opt/wildfly-10.0.0.Final/bin
 
 mv deploy/org /opt/wildfly-10.0.0.Final/modules
 
