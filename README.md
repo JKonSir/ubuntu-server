@@ -13,8 +13,7 @@
   ./deploy.sh
 10. create new wildfly user
   cd /opt/wildfly-10.0.0.Final/bin
-  ./add-user.sh
-  responce yes
+  ./add-user.sh admin admin
 11. create data base
   sudo su - postgres
   psql -h 127.0.0.1 -p 5432 -U postgres -f "/home/vagrant/deploy/init.sql"
